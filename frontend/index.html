@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareFlow | Hospital Management System</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <rect x="5" y="5" width="38" height="38" rx="13" fill="#DDF7F0"/>
+                    <path d="M24 13V35M13 24H35"
+                          stroke="#087F70"
+                          stroke-width="5"
+                          stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <div class="brand-text">
+                <h2>CareFlow<span>.</span></h2>
+                <p>HOSPITAL MANAGEMENT</p>
+            </div>
+        </div>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="navigation">
+
+            <button class="nav-item active"
+                    data-page="dashboard"
+                    onclick="showPage('dashboard', this)">
+
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item"
+                    data-page="registration"
+                    onclick="showPage('registration', this)">
+
+                <span class="nav-icon">⊕</span>
+                <span>Patient Registration</span>
+            </button>
+
+            <button class="nav-item"
+                    data-page="queues"
+                    onclick="showPage('queues', this)">
+
+                <span class="nav-icon">☷</span>
+                <span>Patient Queue</span>
+                <span class="nav-badge" id="queueNavCount">0</span>
+            </button>
+
+            <button class="nav-item"
+                    data-page="emergency"
+                    onclick="showPage('emergency', this)">
+
+                <span class="nav-icon">✚</span>
+                <span>Emergency Care</span>
+            </button>
+
+            <button class="nav-item"
+                    data-page="records"
+                    onclick="showPage('records', this)">
+
+                <span class="nav-icon">▤</span>
+                <span>Patient Records</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-label">HOSPITAL SERVICES</div>
+
+        <div class="service-link">
+            <span class="service-dot green"></span>
+            General Consultation
+        </div>
+
+        <div class="service-link">
+            <span class="service-dot blue"></span>
+            Emergency Department
+        </div>
+
+        <div class="service-link">
+            <span class="service-dot purple"></span>
+            Patient Management
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="support-card">
+                <div class="support-icon">♡</div>
+
+                <h4>Care starts here.</h4>
+
+                <p>
+                    Better coordination for healthcare professionals
+                    and a smoother experience for every patient.
+                </p>
+            </div>
+
+            <div class="profile-card">
+
+                <div class="profile-avatar">CF</div>
+
+                <div class="profile-info">
+                    <h4>Hospital Admin</h4>
+                    <p>Administrator</p>
+                </div>
+
+                <span class="profile-menu">•••</span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="breadcrumb">
+                <span>Workspace</span>
+                <span class="breadcrumb-slash">/</span>
+                <strong id="breadcrumbTitle">Dashboard</strong>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="date-display">
+                    <span class="calendar-icon">▦</span>
+                    <span id="currentDate">Today</span>
+                </div>
+
+                <button class="icon-button notification-button"
+                        onclick="showToast('You are all caught up!','success')"
+                        aria-label="Notifications">
+
+                    ♧
+                    <span class="notification-dot"></span>
+
+                </button>
+
+                <div class="topbar-profile">
+                    <div class="topbar-avatar">HA</div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD PAGE -->
+
+        <section class="page active" id="dashboard">
+
+            <div class="welcome-section">
+
+                <div>
+                    <div class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        YOUR HOSPITAL AT A GLANCE
+                    </div>
+
+                    <h1>Good care starts with<br>
+                        <span>better coordination.</span>
+                    </h1>
+
+                    <p class="welcome-description">
+                        Welcome to CareFlow. Manage patient registrations,
+                        organize queues and keep your hospital running smoothly.
+                    </p>
+                </div>
+
+                <div class="welcome-illustration">
+                    <div class="illustration-circle circle-one"></div>
+                    <div class="illustration-circle circle-two"></div>
+
+                    <div class="illustration-cross">+</div>
+
+                    <div class="illustration-card card-top">
+                        <span class="mini-card-icon">♡</span>
+                        <div>
+                            <strong>Patient First</strong>
+                            <small>Every step matters</small>
+                        </div>
+                    </div>
+
+                    <div class="doctor-illustration">
+                        <div class="doctor-hair"></div>
+                        <div class="doctor-face">
+                            <div class="doctor-eye left"></div>
+                            <div class="doctor-eye right"></div>
+                            <div class="doctor-smile"></div>
+                        </div>
+                        <div class="doctor-neck"></div>
+                        <div class="doctor-coat">
+                            <div class="coat-neck"></div>
+                            <div class="coat-pocket"></div>
+                            <div class="coat-cross">+</div>
+                        </div>
+                    </div>
+
+                    <div class="illustration-card card-bottom">
+                        <span class="mini-check">✓</span>
+                        <div>
+                            <strong>Care in Action</strong>
+                            <small>Organized. Efficient. Caring.</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="section-heading">
+                <div>
+                    <h2>Hospital Overview</h2>
+                    <p>A quick look at today's patient activity.</p>
+                </div>
+
+                <span class="overview-tag">
+                    <span class="tiny-green-dot"></span>
+                    Live Overview
+                </span>
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card stat-total">
+
+                    <div class="stat-top">
+                        <div class="stat-icon total-icon">♙</div>
+                        <span class="stat-label">ALL PATIENTS</span>
+                    </div>
+
+                    <h3 id="totalPatients">0</h3>
+
+                    <p class="stat-description">
+                        Total registered patients
+                    </p>
+
+                    <div class="stat-bottom">
+                        <span class="stat-symbol">↗</span>
+                        <span>Hospital-wide overview</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <div class="stat-icon regular-icon">☷</div>
+                        <span class="stat-label">REGULAR QUEUE</span>
+                    </div>
+
+                    <h3 id="regularCount">0</h3>
+
+                    <p class="stat-description">
+                        Patients awaiting consultation
+                    </p>
+
+                    <div class="stat-bottom">
+                        <span class="status-pill regular-pill">
+                            General Care
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <div class="stat-icon emergency-icon">✚</div>
+                        <span class="stat-label">EMERGENCY</span>
+                    </div>
+
+                    <h3 id="emergencyCount">0</h3>
+
+                    <p class="stat-description">
+                        Patients requiring urgent attention
+                    </p>
+
+                    <div class="stat-bottom">
+                        <span class="status-pill emergency-pill">
+                            Priority Care
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <div class="stat-icon served-icon">✓</div>
+                        <span class="stat-label">PATIENTS SERVED</span>
+                    </div>
+
+                    <h3 id="servedCount">0</h3>
+
+                    <p class="stat-description">
+                        Patients attended during this session
+                    </p>
+
+                    <div class="stat-bottom">
+                        <span class="status-pill served-pill">
+                            Care Delivered
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MAIN DASHBOARD GRID -->
+
+            <div class="dashboard-grid">
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="content-card quick-actions-card">
+
+                    <div class="card-heading">
+                        <div>
+                            <h2>Quick Actions</h2>
+                            <p>Everything you need, one click away.</p>
+                        </div>
+
+                        <span class="heading-dots">•••</span>
+                    </div>
+
+
+                    <button class="action-row"
+                            onclick="showPage('registration')">
+
+                        <div class="action-icon action-register">
+                            ♙
+                        </div>
+
+                        <div class="action-text">
+                            <h4>Register a Patient</h4>
+                            <p>Add a new patient to the hospital.</p>
+                        </div>
+
+                        <span class="action-arrow">↗</span>
+
+                    </button>
+
+
+                    <button class="action-row"
+                            onclick="showPage('queues')">
+
+                        <div class="action-icon action-queue">
+                            ☷
+                        </div>
+
+                        <div class="action-text">
+                            <h4>Manage Patient Queue</h4>
+                            <p>View waiting patients and call the next.</p>
+                        </div>
+
+                        <span class="action-arrow">↗</span>
+
+                    </button>
+
+
+                    <button class="action-row"
+                            onclick="showPage('emergency')">
+
+                        <div class="action-icon action-emergency">
+                            ✚
+                        </div>
+
+                        <div class="action-text">
+                            <h4>Emergency Department</h4>
+                            <p>Access priority patient management.</p>
+                        </div>
+
+                        <span class="action-arrow">↗</span>
+
+                    </button>
+
+
+                    <button class="action-row"
+                            onclick="showPage('records')">
+
+                        <div class="action-icon action-records">
+                            ▤
+                        </div>
+
+                        <div class="action-text">
+                            <h4>Search Patient Records</h4>
+                            <p>Find a patient using their unique ID.</p>
+                        </div>
+
+                        <span class="action-arrow">↗</span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- QUEUE MANAGEMENT -->
+
+                <div class="content-card queue-overview-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <h2>Queue Management</h2>
+                            <p>Keep patient flow organized.</p>
+                        </div>
+
+                        <button class="text-button"
+                                onclick="showPage('queues')">
+                            View all →
+                        </button>
+
+                    </div>
+
+
+                    <div class="queue-summary regular-summary">
+
+                        <div class="queue-summary-left">
+                            <div class="queue-summary-icon">☷</div>
+
+                            <div>
+                                <h4>General Consultation</h4>
+                                <p>Regular patient queue</p>
+                            </div>
+                        </div>
+
+                        <div class="queue-number">
+                            <strong id="regularQueueTotal">0</strong>
+                            <span>waiting</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="queue-summary emergency-summary">
+
+                        <div class="queue-summary-left">
+                            <div class="queue-summary-icon">✚</div>
+
+                            <div>
+                                <h4>Emergency Care</h4>
+                                <p>Priority patient queue</p>
+                            </div>
+                        </div>
+
+                        <div class="queue-number">
+                            <strong id="emergencyQueueTotal">0</strong>
+                            <span>waiting</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="queue-note">
+                        <div class="queue-note-icon">i</div>
+
+                        <p>
+                            Patients are managed according to their
+                            assigned queue and care priority.
+                        </p>
+                    </div>
+
+
+                    <div class="queue-buttons">
+
+                        <button class="btn btn-primary"
+                                id="dashboardCallRegular"
+                                onclick="callRegularPatient()">
+                            <span>→</span> Call Next Patient
+                        </button>
+
+                        <button class="btn btn-emergency"
+                                id="dashboardCallEmergency"
+                                onclick="callEmergencyPatient()">
+                            <span>✚</span> Emergency Call
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT ACTIVITY -->
+
+            <div class="content-card activity-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h2>Recent Hospital Activity</h2>
+                        <p>Stay informed about the latest patient updates.</p>
+                    </div>
+
+                    <span class="activity-label">RECENT UPDATES</span>
+
+                </div>
+
+                <div id="activityFeed" class="activity-feed">
+
+                    <div class="empty-activity">
+                        <div class="empty-activity-icon">♡</div>
+
+                        <h4>Your activity will appear here</h4>
+
+                        <p>
+                            Patient registrations and queue updates
+                            will be displayed in this section.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PATIENT REGISTRATION PAGE -->
+
+        <section class="page" id="registration">
+
+            <div class="page-heading">
+
+                <div>
+                    <div class="eyebrow">
+                        PATIENT SERVICES
+                    </div>
+
+                    <h1>Patient Registration</h1>
+
+                    <p>
+                        Create a patient record and organize
+                        their hospital visit.
+                    </p>
+                </div>
+
+                <div class="page-heading-icon">♙</div>
+
+            </div>
+
+
+            <div class="form-layout">
+
+                <div class="content-card registration-card">
+
+                    <div class="form-section-heading">
+
+                        <div class="form-section-icon">♙</div>
+
+                        <div>
+                            <h2>Patient Information</h2>
+                            <p>Enter the patient's details below.</p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="registrationForm">
+
+                        <div class="form-section-label">
+                            PERSONAL DETAILS
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group full-width">
+
+                                <label for="patientName">
+                                    Full Name <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="patientName"
+                                    name="name"
+                                    placeholder="Enter patient's full name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="patientAge">
+                                    Age <span>*</span>
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="patientAge"
+                                    name="age"
+                                    min="0"
+                                    max="120"
+                                    placeholder="Enter age"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="patientGender">
+                                    Gender <span>*</span>
+                                </label>
+
+                                <select
+                                    id="patientGender"
+                                    name="gender"
+                                    required
+                                >
+
+                                    <option value="">Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="patientPhone">
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="patientPhone"
+                                    name="phone"
+                                    placeholder="Enter contact number"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="patientBloodGroup">
+                                    Blood Group
+                                </label>
+
+                                <select
+                                    id="patientBloodGroup"
+                                    name="bloodGroup"
+                                >
+
+                                    <option value="">Select blood group</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="Unknown">Unknown</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group full-width">
+
+                                <label for="patientAddress">
+                                    Address
+                                </label>
+
+                                <textarea
+                                    id="patientAddress"
+                                    name="address"
+                                    rows="3"
+                                    placeholder="Enter residential address"
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-section-label form-section-spaced">
+                            VISIT DETAILS
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="patientDepartment">
+                                    Department <span>*</span>
+                                </label>
+
+                                <select
+                                    id="patientDepartment"
+                                    name="department"
+                                    required
+                                >
+
+                                    <option value="">Select department</option>
+                                    <option value="General Medicine">General Medicine</option>
+                                    <option value="Cardiology">Cardiology</option>
+                                    <option value="Orthopedics">Orthopedics</option>
+                                    <option value="Pediatrics">Pediatrics</option>
+                                    <option value="Neurology">Neurology</option>
+                                    <option value="Dermatology">Dermatology</option>
+                                    <option value="Gynecology">Gynecology</option>
+                                    <option value="ENT">ENT</option>
+                                    <option value="Ophthalmology">Ophthalmology</option>
+                                    <option value="Other">Other</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="patientPriority">
+                                    Visit Priority <span>*</span>
+                                </label>
+
+                                <select
+                                    id="patientPriority"
+                                    name="priority"
+                                    required
+                                >
+
+                                    <option value="REGULAR">
+                                        Regular Consultation
+                                    </option>
+
+                                    <option value="EMERGENCY">
+                                        Emergency
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group full-width">
+
+                                <label for="patientSymptoms">
+                                    Symptoms / Reason for Visit
+                                </label>
+
+                                <textarea
+                                    id="patientSymptoms"
+                                    name="symptoms"
+                                    rows="3"
+                                    placeholder="Briefly describe the reason for the visit"
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-footer">
+
+                            <p class="required-note">
+                                <span>*</span> Required fields
+                            </p>
+
+                            <div class="form-buttons">
+
+                                <button
+                                    type="reset"
+                                    class="btn btn-secondary"
+                                >
+                                    Clear Form
+                                </button>
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                                >
+                                    <span>+</span>
+                                    Register Patient
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- REGISTRATION INFORMATION -->
+
+                <div class="registration-aside">
+
+                    <div class="info-card">
+
+                        <div class="info-card-icon">♡</div>
+
+                        <h3>Every patient matters.</h3>
+
+                        <p>
+                            Accurate registration helps healthcare
+                            professionals organize consultations
+                            and provide a better patient experience.
+                        </p>
+
+                        <div class="info-divider"></div>
+
+                        <div class="info-point">
+                            <span>✓</span>
+                            Organized patient information
+                        </div>
+
+                        <div class="info-point">
+                            <span>✓</span>
+                            Department-wise classification
+                        </div>
+
+                        <div class="info-point">
+                            <span>✓</span>
+                            Priority-based patient handling
+                        </div>
+
+                    </div>
+
+
+                    <div class="registration-tip">
+
+                        <div class="tip-icon">i</div>
+
+                        <div>
+                            <h4>Registration tip</h4>
+
+                            <p>
+                                Verify the patient's details before
+                                submitting the registration form.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PATIENT QUEUE PAGE -->
+
+        <section class="page" id="queues">
+
+            <div class="page-heading">
+
+                <div>
+                    <div class="eyebrow">
+                        PATIENT FLOW
+                    </div>
+
+                    <h1>Patient Queue</h1>
+
+                    <p>
+                        Organize waiting patients and manage
+                        the consultation process efficiently.
+                    </p>
+                </div>
+
+                <div class="page-heading-icon">☷</div>
+
+            </div>
+
+
+            <div class="queue-page-stats">
+
+                <div class="mini-stat-card">
+                    <div class="mini-stat-icon regular-icon">☷</div>
+
+                    <div>
+                        <p>Regular Waiting</p>
+                        <h3 id="queueRegularCount">0</h3>
+                    </div>
+                </div>
+
+
+                <div class="mini-stat-card">
+                    <div class="mini-stat-icon emergency-icon">✚</div>
+
+                    <div>
+                        <p>Emergency Waiting</p>
+                        <h3 id="queueEmergencyCount">0</h3>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="content-card queue-page-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h2>General Consultation Queue</h2>
+                        <p>Patients awaiting their turn.</p>
+                    </div>
+
+                    <span class="status-pill regular-pill">
+                        Regular Queue
+                    </span>
+
+                </div>
+
+
+                <div class="queue-table-wrapper">
+
+                    <table class="data-table">
+
+                        <thead>
+                            <tr>
+                                <th>PATIENT ID</th>
+                                <th>PATIENT NAME</th>
+                                <th>AGE</th>
+                                <th>GENDER</th>
+                                <th>DEPARTMENT</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="regularQueueTable">
+
+                            <tr>
+                                <td colspan="6" class="table-empty">
+                                    No patients currently in the queue.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="queue-page-footer">
+
+                    <p>
+                        Patients should be called according to
+                        the queue order and clinical requirements.
+                    </p>
+
+                    <button
+                        class="btn btn-primary"
+                        id="queueCallRegular"
+                        onclick="callRegularPatient()"
+                    >
+                        → Call Next Patient
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="queue-guidance">
+
+                <div class="guidance-icon">i</div>
+
+                <div>
+                    <h4>Queue management guidelines</h4>
+
+                    <p>
+                        Keep patient information updated. Emergency
+                        cases should receive immediate clinical
+                        assessment regardless of their position
+                        in the regular consultation queue.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- EMERGENCY PAGE -->
+
+        <section class="page" id="emergency">
+
+            <div class="page-heading emergency-page-heading">
+
+                <div>
+                    <div class="eyebrow emergency-eyebrow">
+                        PRIORITY PATIENT CARE
+                    </div>
+
+                    <h1>Emergency Department</h1>
+
+                    <p>
+                        Dedicated patient management for urgent
+                        medical attention and emergency consultations.
+                    </p>
+                </div>
+
+                <div class="emergency-heading-icon">✚</div>
+
+            </div>
+
+
+            <div class="emergency-banner">
+
+                <div class="emergency-banner-icon">✚</div>
+
+                <div>
+                    <h3>Every second counts.</h3>
+
+                    <p>
+                        Emergency patients require prompt assessment
+                        and prioritization by qualified medical staff.
+                    </p>
+                </div>
+
+                <div class="emergency-banner-decoration">+</div>
+
+            </div>
+
+
+            <div class="emergency-stats">
+
+                <div class="content-card emergency-count-card">
+
+                    <div class="emergency-stat-icon">✚</div>
+
+                    <p>Patients Awaiting Emergency Care</p>
+
+                    <h2 id="emergencyPageCount">0</h2>
+
+                    <span class="emergency-small-label">
+                        Priority Queue
+                    </span>
+
+                </div>
+
+
+                <div class="content-card emergency-instructions">
+
+                    <h3>Emergency Care Workflow</h3>
+
+                    <div class="workflow-step">
+                        <span class="workflow-number">01</span>
+
+                        <div>
+                            <h4>Identify</h4>
+                            <p>Identify the patient requiring urgent attention.</p>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <span class="workflow-number">02</span>
+
+                        <div>
+                            <h4>Prioritize</h4>
+                            <p>Arrange immediate assessment by clinical staff.</p>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <span class="workflow-number">03</span>
+
+                        <div>
+                            <h4>Attend</h4>
+                            <p>Call the patient and coordinate the next step.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card emergency-table-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h2>Emergency Patient Queue</h2>
+                        <p>Patients registered for emergency attention.</p>
+                    </div>
+
+                    <span class="status-pill emergency-pill">
+                        Priority Care
+                    </span>
+
+                </div>
+
+
+                <div class="queue-table-wrapper">
+
+                    <table class="data-table">
+
+                        <thead>
+                            <tr>
+                                <th>PATIENT ID</th>
+                                <th>PATIENT NAME</th>
+                                <th>AGE</th>
+                                <th>GENDER</th>
+                                <th>DEPARTMENT</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="emergencyQueueTable">
+
+                            <tr>
+                                <td colspan="6" class="table-empty">
+                                    No emergency patients currently waiting.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="emergency-action-footer">
+
+                    <p>
+                        <strong>Important:</strong>
+                        This queue is an organizational aid and does
+                        not replace clinical triage or medical judgment.
+                    </p>
+
+                    <button
+                        class="btn btn-emergency"
+                        id="queueCallEmergency"
+                        onclick="callEmergencyPatient()"
+                    >
+                        ✚ Call Emergency Patient
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PATIENT RECORDS PAGE -->
+
+        <section class="page" id="records">
+
+            <div class="page-heading">
+
+                <div>
+                    <div class="eyebrow">
+                        PATIENT INFORMATION
+                    </div>
+
+                    <h1>Patient Records</h1>
+
+                    <p>
+                        Search and review registered patient information
+                        using a unique patient ID.
+                    </p>
+                </div>
+
+                <div class="page-heading-icon">▤</div>
+
+            </div>
+
+
+            <div class="content-card records-search-card">
+
+                <div class="records-search-heading">
+
+                    <div class="search-illustration">⌕</div>
+
+                    <div>
+                        <h2>Find a Patient</h2>
+
+                        <p>
+                            Enter the patient's ID to retrieve their record.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="searchForm" class="search-form">
+
+                    <div class="search-input-wrapper">
+
+                        <span class="search-input-icon">⌕</span>
+
+                        <input
+                            type="text"
+                            id="searchPatientId"
+                            name="patientId"
+                            placeholder="Enter Patient ID"
+                            required
+                        >
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Search Records
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <div id="searchResult" class="search-result-container">
+
+                <div class="content-card records-placeholder">
+
+                    <div class="records-placeholder-icon">▤</div>
+
+                    <h3>Patient records, made accessible.</h3>
+
+                    <p>
+                        Search using a patient's unique ID to view
+                        their available registration information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="records-note">
+
+                <span class="records-note-icon">i</span>
+
+                <p>
+                    Patient records contain confidential information.
+                    Access and handle all patient details responsibly.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="main-footer">
+
+            <div class="footer-brand">
+                <span class="footer-cross">+</span>
+                <strong>CareFlow</strong>
+                <span class="footer-divider">|</span>
+                <span>Hospital Management System</span>
+            </div>
+
+            <p>
+                Better coordination. Better care. Better outcomes.
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST NOTIFICATION -->
+
+<div id="toast" class="toast" role="status" aria-live="polite">
+
+    <span id="toastIcon" class="toast-icon">✓</span>
+
+    <span id="toastMessage">
+        Action completed successfully.
+    </span>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
